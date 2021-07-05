@@ -1,0 +1,766 @@
+<html>
+
+<head>
+    <title>Writing</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/206784a216.js" crossorigin="anonymous"></script>
+    <link
+        href="https://fonts.googleapis.com/css?family=Google+Sans:400,500|Roboto:300,400,400i,500,700&amp;subset=latin,vietnamese,latin-ext,cyrillic,greek,cyrillic-ext,greek-ext"
+        rel="stylesheet" type="text/css" nonce="">
+
+    <style>
+        
+         /* @media screen and (max-width: 1024px) {
+            body {
+                display: none;
+            }
+        } */
+        body {
+            font-family: 'Roboto', sans-serif;
+            overflow: hidden;
+            margin: 0;
+        }
+
+        h1 {
+            margin-top: 20px;
+            padding-top: 0px;
+            padding-bottom: 0;
+            margin-bottom: auto;
+            font-family: 'Google Sans', sans-serif;
+            font-size: 36px;
+            font-weight: normal;
+        }
+
+        p {
+            padding-top: 10px;
+            margin-bottom: 20px;
+            text-align: justify;
+            padding-bottom: 0px;
+        }
+            
+       
+        ::placeholder{
+            font-size: 14px;
+            font-family: 'Roboto', sans-serif;
+        }
+        /* NOTY BAR */
+        #start_bar {
+        
+            font-family: 'Google Sans', sans-serif;
+            position: absolute;
+            z-index: 100;
+            background-image: linear-gradient(to top right, rgb(50, 0, 0), rgb(210, 0, 0));
+            /* border-radius: 10px; */
+            padding: 0;
+            margin: auto;
+            position: absolute;
+            top: 0;
+            left: 0;
+            /* transform: translate(-50%, -50%); */
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            align-items: center;
+            font-size: 20px;
+            color: white;
+        }
+
+        .start_bar_container {
+            position: absolute;
+            padding-top: 50px;
+            margin: auto;
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            font-family: 'Google Sans', sans-serif;
+        }
+
+        .event_name {
+            padding: 20px;
+            font-size: 48px;
+            font-weight: bold;
+            padding-bottom: 60px;
+        }
+
+        .skill_name {
+            border-radius: 5px;
+            margin: auto;
+            width: fit-content;
+            background-color: white;
+            color: red;
+            font-size: 28px;
+            font-weight: bold;
+            padding: 10px 20px 10px 20px;
+        }
+
+        #start_btn {
+            font-family: 'Google Sans', sans-serif;
+            font-size: 20px;
+            font-weight: normal;
+            background-color: white;
+            border-radius: 30px;
+            border-width: 0.1px;
+            border-style: solid;
+            width: 100px;
+            margin: auto;
+            border-color: white;
+            color: red;
+            align-items: center;
+        }
+
+        .hide {
+            display: none;
+            ;
+        }
+
+        .show {
+            display: block;
+            font-family: 'Google Sans', sans-serif;
+            position: absolute;
+            z-index: 100;
+            background-image: linear-gradient(to top right, rgb(50, 0, 0), rgb(210, 0, 0));
+            /* border-radius: 10px; */
+            padding: 0;
+            margin: auto;
+            position: absolute;
+            top: 0;
+            left: 0;
+            /* transform: translate(-50%, -50%); */
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            align-items: center;
+            font-size: 20px;
+            color: white;
+        }
+
+        .timeout_bar_container {
+            position: absolute;
+            padding-top: 50px;
+            margin: auto;
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            font-family: 'Google Sans', sans-serif;
+        }
+
+        #exit_btn {
+            font-family: 'Google Sans', sans-serif;
+            font-size: 20px;
+            font-weight: normal;
+            background-color: white;
+            border-radius: 30px;
+            border-width: 0.1px;
+            border-style: solid;
+            width: 100px;
+            margin: auto;
+            border-color: white;
+            color: red;
+            align-items: center;
+        }
+        #return_btn {
+            font-family: 'Google Sans', sans-serif;
+            font-size: 20px;
+            font-weight: normal;
+            background-color: white;
+            border-radius: 30px;
+            border-width: 0.1px;
+            border-style: solid;
+            width:fit-content;
+            margin: auto;
+            border-color: white;
+            color: red;
+            align-items: center;
+            left: 50%;
+            height: 30px;
+            text-align: center;
+        }
+
+
+        /* Header */
+        header {
+            box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+            border-width: 0.5px;
+            border-style: solid;
+            border-color: rgb(218, 220, 224);
+            font-family: 'Google Sans', sans-serif;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: white;
+            color: black;
+            font-size: 24;
+            padding: 0 0 0 0;
+            height: 50px;
+            width: 100%;
+        }
+
+        a {
+            float: left;
+            color: black;
+            text-align: center;
+            text-decoration: none;
+            font-size: 18px;
+
+        }
+
+        .header_left {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-left: 20px;
+            width: 100%;
+            height: 50px;
+        }
+
+        .logo {
+            float: left;
+            width: 50px;
+        }
+
+        a.company_name {
+            padding-top: 50px;
+            padding-bottom: 20px;
+            width: fit-content;
+            font-size: px;
+            height: 50px;
+        }
+
+        .header_right {
+            float: right;
+            position: relative;
+            right: 0;
+            top: 0;
+            height: 50px;
+        }
+
+        /* BODY */
+        section {
+            height: calc(100%-200px);
+            background-color: rgb(246, 246, 246);
+            width: 100%;
+            margin-bottom: 40px;
+            padding-bottom: 50px;
+        }
+
+        /* LEFT COLUMN */
+        .col_left {
+            background-color: rgb(246, 246, 246);
+            float: left;
+            width: 50%;
+            height: 100%;
+            overflow-y: scroll;
+            scroll-behavior: smooth;
+        }
+
+        /* Content in Left column */
+        .part {
+            padding: 0 20px 0 20px;
+            text-align: center;
+           
+    
+        }
+
+        #part_1, #part_2, #part_3 {
+            padding-top: 10px;
+        }
+
+        .content {
+            margin-top: 0px;
+        }
+
+        .part_container {
+            box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+            padding-left: 20px;
+            padding-right: 20px;
+            border-radius: 10px;
+            border-width: 0.5px;
+            border-style: solid;
+            border-color: rgb(218, 220, 224);
+            background-color: white !important;
+            width: auto;
+            height: auto;
+            text-align: left;
+        }
+
+        h1.part_name {
+            padding-top: auto;
+            padding-bottom: 0;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .photo_content {
+            margin-top: 10px;
+            border-radius: 10px;
+            box-shadow: 0 2px 2px rgba(0, 0, 0, 0.09);
+            border-width: 0.5px;
+            border-style: solid;
+            object-fit: cover;
+            padding-left: 0;
+            border-width: 0.5px;
+            border-style: solid;
+            border-color: rgb(218, 220, 224);
+            width: 100%;
+            height: auto;
+
+        }
+
+        /* RIGHT COLUMN */
+        .col_right {
+            padding-top: 0px;
+            float: right;
+            width: 50%;
+            height: 100%;
+            overflow-y: scroll;
+            background-color: rgb(246, 246, 246);
+        }
+
+        /* Content in Right column */
+        .answer_sheet {
+            width: 100%;
+            height: 100%;
+        }
+        .id{
+            width: 100%;
+            height: fit-content;
+            border-style: hidden;
+            margin-bottom: 20px;
+            margin-top: 20px;
+            border-bottom: rgb(246, 246, 246);
+            font-family:  'Roboto' sans-serif;
+            font-size: 18px;
+        }
+        .task_input{
+            width: 100%;
+            height: 400px;
+            border-style: none;
+            margin-bottom: 20px;
+            margin-top: 20px;
+            font-family: 'Roboto', sans-serif;
+            font-size: 18px;
+        }
+        button{
+            font-family: 'Google Sans', sans-serif;
+            font-size: 18px;
+            color: white;
+            background-color: rgb(119,119,119);
+            width: fit-content;
+            height: 30px;
+            border-radius: 5px;
+            border-style: none;
+            box-shadow: 0 2px 2px rgba(114, 95, 95, 0.09);
+            left: 0%;
+            padding: 5 20 5 20;
+
+            
+
+        }
+        .submit_btn_container{
+            justify-content: left;
+            align-items: left;
+            width: 100%;
+            margin-left: 20px;
+            padding: 10 0 50 0;
+            display: flex;
+        }
+
+        /* Footer */
+        footer {
+            font-family: 'Google Sans', sans-serif;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            background-image: linear-gradient(to top right, rgb(50, 0, 0), rgb(210, 0, 0));
+            color: white;
+            font-size: 14;
+            padding: 10 0 0 0;
+            height: 40px;
+            width: 100%;
+        }
+
+        .btn_container {
+            float: left;
+            width: 40%;
+            height: 40px;
+            background-color: rgba(0, 0, 0, 0);
+        }
+
+        .btn_wraper {
+            margin-left: 10px;
+            width: max-content;
+        }
+
+        .btn_part {
+            float: left;
+            width: fit-content;
+            background-color: white;
+            border-radius: 100px;
+            text-align: center;
+            padding: 3px 10px 3px 10px;
+            margin-left: 10px;
+            color: red;
+
+        }
+
+        .timer {
+            margin: auto;
+            font-family: 'Google Sans', sans-serif;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0);
+            color: white;
+            text-align: center;
+            font-size: 24;
+            height: 40px;
+            width: 20%;
+        }
+
+        .name_skill {
+            padding-right: 20px;
+            float: right;
+            width: 40%;
+            height: 40px;
+            background-color: rgba(0, 0, 0, 0);
+            text-align: right;
+            font-size: 24px;
+        }
+         /* CHECK PASSWORD */
+        /* You only need to apply this to elements that should be hidden and
+   then simply remove this class from hidden elements to show them. */
+        .hidden { display: none; }
+
+        #button{
+            font-family: 'Google Sans', sans-serif;
+            font-size: 20px;
+            font-weight: normal;
+            background-color: white;
+            border-radius: 30px;
+            border-width: 0.1px;
+            border-style: solid;
+            width: 100px;
+            margin: auto;
+            border-color: white;
+            color: red;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .enter_key{
+            width: fit-content;
+            padding: 10 20 10 20;
+            background-color:white;
+            border-radius: 5px;
+            text-align: center;
+            border-style: none;
+        }
+    </style>
+
+</head>
+
+<body>
+   
+    <!-- Body -->
+    <!--Time out bar  -->
+    <div id="timeout_bar" class="hide">
+        <div class="timeout_bar_container">
+            <h1 class="event_name">TIME OUT!</h1>
+            <div id="return_btn">
+                <a href="Listening.html" style="color: red; text-align: center; margin: auto; padding: 3 20 0 20;" >Continue to Listening test</a>
+            </div>
+        </div>
+    </div> 
+    <!-- Start bar -->
+    <div id="start_bar">
+        <div class="start_bar_container">
+            <h1 class="event_name">FINAL TEST IELTS FOUNDATION</h1>
+            <h1 class="skill_name">Writing Test</h1>
+            <h1 style="font-size: 28px;">2 Tasks - 60 Minutes</h1>
+            <p style="font-size: 18px; font-weight: lighter; text-align: center;">The countdown timer will begin when you click on Start</p>
+            <input class="enter_key" type="password" id="password" placeholder="Enter a private key">
+            <br>
+            <input id="button" type="button" value="Start">
+        </div>
+    </div>
+    <!-- End bar -->
+    <div id="end_bar" class="hide">
+        <div class="timeout_bar_container">
+            <h1 class="event_name">You've finished the test successfully!</h1>
+            <div id="return_btn">
+                <a href="Listening.html" style="color: red; text-align: center; margin: auto; padding: 3 20 0 20;" >Continue to Listening test</a>
+            </div>
+        </div>
+    </div>
+
+    <section>
+
+        <article class="col_left">
+
+            <!-- Content in Left Colum -->
+            <article class="content">
+
+                <!-- Part 1 -->
+                <article class="part" id="part_1">
+                    <div class="part_container ">
+                        <h1 class="part_name">Task 1. </h1>
+                        <p>You should spend about <b> 20 minutes </b> on this task. </p>
+                    <b>
+                        <i>
+                        <p>The bar chart shows the average size class in primary schools and lower secondary schools in 6 countries compared to the world average in 2006.                       </p>
+                        <p>Summarise the information by selecting and reporting the main features and make comparisons where relevant.</p>
+                        </i>
+                    </b>
+                        <p>You should write at least <b>150 words.</b> </p>
+                    </div>
+                    <img class="photo_content"
+                        src="Photo/writing task 1.jpg"
+                        alt="">
+                    
+                </article>
+
+                <!-- Part 2 -->
+                <article class="part" id="part_2">
+                    <div class="part_container" style="margin-bottom: 50px !important";> 
+                        <h1 class="part_name">Tast 2. </h1>
+                        <p > You should spend about <b>40 minutes</b>  on this task.</p>
+
+                        <p >Write about the following topic.</p>
+                    <b>
+                        <i>
+                        <p >Nowadays, young people admire media and sports stars though they often do not set a good example. Do you think this is a positive or negative development?
+                        </p>
+                        </i>
+                    </b>
+                        <p>Give reasons for your answer and include any relevant examples from your own knowledge or experience.</p>
+                        <p > You should write <b>at least 250 words.</b> </p>
+                    </div>
+                    <p></p>
+                
+                </article>
+            </article>
+        </article>
+
+        <!-- Answer Sheet -->
+        <article class="col_right">
+            
+            <form action="https://sheetdb.io/api/v1/ux6dfiw27zbxf" method="POST" id="sheetdb-form"  class="answer_sheet">
+                <div class="part">
+                    <div class="part_container" style="margin-top: 10px !important;">
+                        <h1 class="part_name">Enter your name</h1> 
+                        <input name="data[name]" class="id" placeholder="Type your ID here">
+                    </div>
+                </div>
+                <div class="part">
+                    <div class="part_container" style="margin-top: 10px !important;">
+                        <h1 class="part_name">Task 1</h1> 
+                        <p> Word Count:
+                            <span id="count1">0</span>
+                        </p>
+                        <textarea id="task1" oninput="countWord1()" spellcheck="false" name="data[task1]" class="task_input" placeholder="Type your answer here..."></textarea>
+                    </div>
+                </div>
+               
+                <div class="part">
+                    <div class="part_container" style="margin-top: 10px !important;">
+                        <h1 class="part_name">Task 2</h1> 
+                        <p> Word Count:
+                            <span id="count2">0</span>
+                        </p>
+                        <textarea id="task2" oninput="countWord2()" spellcheck="false" name="data[task2]" class="task_input" placeholder="Type your answer here..."></textarea>
+                        
+                    </div>
+                </div>
+                <div class="submit_btn_container" style="margin-bottom: 200px !important;">
+                    <button type="submit">Submit</button>
+                </div>
+                
+              </form>
+              
+              <script>
+                var form = document.getElementById('sheetdb-form');
+                form.addEventListener("submit", e => {
+                  e.preventDefault();
+                  fetch(form.action, {
+                      method : "POST",
+                      body: new FormData(document.getElementById("sheetdb-form")),
+                  }).then(
+                      response => response.json()
+                  ).then((html) => {
+                    // you can put any JS code here
+                    document.getElementById("end_bar").className = "show";
+                    alert('Success!')
+                  });
+                });
+              </script>
+        </article>
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+        <section class="btn_container">
+            <div class="btn_wraper">
+                <div class="btn_part">
+                    <a href="#part_1" style="color:darkred !important;">Task 1</a>
+                </div>
+                <div class="btn_part">
+                    <a href="#part_2" style="color: darkred !important;">Task 2</a>
+                </div> 
+                
+            </div>
+        </section>
+        <section class="name_skill">
+            Writing Test
+        </section>
+        <section class="timer">
+            <i class="far fa-clock"></i>
+            <span id="timer">63:00</span>
+        </section>
+
+    </footer>
+
+
+    <!-- Script -->
+    <script src="https://kit.fontawesome.com/206784a216.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        // START BAR
+        $("#start_bar #start_btn").on('click', function () {
+            $(this).parents("#start_bar").fadeOut();
+
+                
+        });
+       
+        $("#timeout_bar #exit_btn").on('click', function () {
+            $("#timeout_bar").removeClass("show").addClass("hide");
+        }); 
+
+        document.getElementById("return_btn").onclick = function () {
+        location.href = "Index.html";
+        };
+    
+        //    CHECK PASSWORD
+    // Get references to the elements you'll be working with
+    var input = document.getElementById("password");
+        var div = document.getElementById("HIDDENDIV");
+        var btn = document.getElementById("button");
+
+        // Set up event handlers in JavaScript
+        button.addEventListener("click", validate);
+
+        function validate(){
+        if (input.value == '15970994') { 
+            // No need to add a "show" class. Just remove the "hidden" class.
+            $(this).parents("#start_bar").fadeOut();
+            
+            // TIMER
+            var presentTimeEl = document.getElementById('timer');
+                let timeArray = presentTimeEl.innerText.split(/[:]+/);
+                var min = timeArray[0];
+                var sec = timeArray[1];
+
+                function startTimer() {
+                    sec--;
+                    if (sec < 10 && sec >= 0) { sec = "0" + sec };
+                    if (sec < 0) { sec = 59 };
+                    if (sec == 59) {
+                        min--;
+                    }
+                    if (min.toString().length == 1) {
+                        min = '0' + min;
+                    }
+                    console.log(min.length)
+                    presentTimeEl.innerText = min + ":" + sec;
+                    if (min < 0) {
+                        clearInterval(countdown);
+                        console.log('end')
+                        presentTimeEl.innerText = "Time out!";
+                       document.getElementById("timeout_bar").className = "show";
+                        
+                    }
+
+                }
+                var countdown = setInterval(startTimer, 1000);
+
+
+            
+        } 
+        
+        else {  
+            password.focus(); // <-- If you don't do this first, your select code won't work
+            password.setSelectionRange(0, password.value.length);   
+            alert('Invalid Password!'); 
+        }
+        }
+
+//         input.addEventListener("keydown", function(event){
+//         if (event.keyCode === 13){
+//         // No reason to simulate a button click. Just call the code that needs to be run.
+//         validate();
+//         }
+// })
+;
+function countWord1() {
+  
+  // Get the input text value
+  var words = document
+      .getElementById("task1").value;
+
+  // Initialize the word counter
+  var count = 0;
+
+  // Split the words on each
+  // space character 
+  var split = words.split(' ');
+
+  // Loop through the words and 
+  // increase the counter when 
+  // each split word is not empty
+  for (var i = 0; i < split.length; i++) {
+      if (split[i] != "") {
+          count += 1;
+      }
+  }
+
+  // Display it as output
+  document.getElementById("count1")
+      .innerHTML = count;
+}
+
+function countWord2() {
+  
+  // Get the input text value
+  var words = document
+      .getElementById("task2").value;
+
+  // Initialize the word counter
+  var count = 0;
+
+  // Split the words on each
+  // space character 
+  var split = words.split(' ');
+
+  // Loop through the words and 
+  // increase the counter when 
+  // each split word is not empty
+  for (var i = 0; i < split.length; i++) {
+      if (split[i] != "") {
+          count += 1;
+      }
+  }
+
+  // Display it as output
+  document.getElementById("count2")
+      .innerHTML = count;
+}
+
+       
+    </script>
+
+</body>
+
+</html>

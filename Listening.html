@@ -1,0 +1,996 @@
+<html>
+
+<head>
+    <title>Listening</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/206784a216.js" crossorigin="anonymous"></script>
+    <link
+        href="https://fonts.googleapis.com/css?family=Google+Sans:400,500|Roboto:300,400,400i,500,700&amp;subset=latin,vietnamese,latin-ext,cyrillic,greek,cyrillic-ext,greek-ext"
+        rel="stylesheet" type="text/css" nonce="">
+
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            overflow: hidden;
+            margin: 0;
+        }
+        audio{
+            background-color: rgb(241,243,244);
+            margin-top: 0px;
+            width: 100%;
+            border-radius: 0;
+            border-style: solid;
+            border-width: 0.1px;
+            box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+            border-color: rgb(218, 220, 224);
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+        h1 {
+            margin-top: 20px;
+            padding-top: 0px;
+            padding-bottom: 0;
+            margin-bottom: auto;
+            font-family: 'Google Sans', sans-serif;
+            font-size: 36px;
+            font-weight: normal;
+        }
+
+        p {
+            padding-top: 10px;
+            margin-bottom: 20px;
+            text-align: justify;
+            padding-bottom: 0px;
+        }
+
+        /* NOTY BAR */
+        #start_bar {
+           
+            font-family: 'Google Sans', sans-serif;
+            position: absolute;
+            z-index: 100;
+            background-image: linear-gradient(to top right, rgb(50, 0, 0), rgb(210, 0, 0));
+            /* border-radius: 10px; */
+            padding: 0;
+            margin: auto;
+            position: absolute;
+            top: 0;
+            left: 0;
+            /* transform: translate(-50%, -50%); */
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            align-items: center;
+            font-size: 20px;
+            color: white;
+        }
+
+        .start_bar_container {
+            position: absolute;
+            padding-top: 50px;
+            margin: auto;
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            font-family: 'Google Sans', sans-serif;
+        }
+
+        .event_name {
+            padding: 20px;
+            font-size: 48px;
+            font-weight: bold;
+            padding-bottom: 60px;
+        }
+
+        .skill_name {
+            border-radius: 5px;
+            margin: auto;
+            width: fit-content;
+            background-color: white;
+            color: red;
+            font-size: 28px;
+            font-weight: bold;
+            padding: 10px 20px 10px 20px;
+        }
+
+        #start_btn {
+            font-family: 'Google Sans', sans-serif;
+            font-size: 20px;
+            font-weight: normal;
+            background-color: white;
+            border-radius: 30px;
+            border-width: 0.1px;
+            border-style: solid;
+            width: 100px;
+            margin: auto;
+            border-color: white;
+            color: red;
+            align-items: center;
+        }
+
+        .hide {
+            display: none;
+            ;
+        }
+
+        .show {
+            display: block;
+            font-family: 'Google Sans', sans-serif;
+            position: absolute;
+            z-index: 100;
+            background-image: linear-gradient(to top right, rgb(50, 0, 0), rgb(210, 0, 0));
+            /* border-radius: 10px; */
+            padding: 0;
+            margin: auto;
+            position: absolute;
+            top: 0;
+            left: 0;
+            /* transform: translate(-50%, -50%); */
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            align-items: center;
+            font-size: 20px;
+            color: white;
+        }
+
+        .timeout_bar_container {
+            position: absolute;
+            padding-top: 50px;
+            margin: auto;
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            font-family: 'Google Sans', sans-serif;
+        }
+
+        #exit_btn {
+            font-family: 'Google Sans', sans-serif;
+            font-size: 20px;
+            font-weight: normal;
+            background-color: white;
+            border-radius: 30px;
+            border-width: 0.1px;
+            border-style: solid;
+            width: 100px;
+            margin: auto;
+            border-color: white;
+            color: red;
+            align-items: center;
+        }
+        #return_btn {
+            font-family: 'Google Sans', sans-serif;
+            font-size: 20px;
+            font-weight: normal;
+            background-color: white;
+            border-radius: 30px;
+            border-width: 0.1px;
+            border-style: solid;
+            width:fit-content;
+            margin: auto;
+            border-color: white;
+            color: red;
+            align-items: center;
+            left: 50%;
+            height: 30px;
+            text-align: center;
+        }
+
+        /* Header */
+        header {
+            box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+            border-width: 0.5px;
+            border-style: solid;
+            border-color: rgb(218, 220, 224);
+            font-family: 'Google Sans', sans-serif;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: white;
+            color: black;
+            font-size: 24;
+            padding: 0 0 0 0;
+            height: 50px;
+            width: 100%;
+        }
+
+        a {
+            float: left;
+            color: black;
+            text-align: center;
+            text-decoration: none;
+            font-size: 18px;
+
+        }
+
+        .header_left {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-left: 20px;
+            width: 100%;
+            height: 50px;
+        }
+
+        .logo {
+            float: left;
+            width: 50px;
+        }
+
+        a.company_name {
+            padding-top: 50px;
+            padding-bottom: 20px;
+            width: fit-content;
+            font-size: px;
+            height: 50px;
+        }
+
+        .header_right {
+            float: right;
+            position: relative;
+            right: 0;
+            top: 0;
+            height: 50px;
+        }
+
+        /* BODY */
+        section {
+            height: calc(100%-200px);
+            background-color: rgb(246, 246, 246);
+            width: 100%;
+            margin-bottom: 40px;
+            padding-bottom: 50px;
+        }
+
+        /* LEFT COLUMN */
+        .col_left {
+            background-color: rgb(246, 246, 246);
+            float: left;
+            width: 50%;
+            height: 100%;
+            overflow-y: scroll;
+            scroll-behavior: smooth;
+        }
+
+        /* Content in Left column */
+        .part {
+            padding: 0 20px 0 20px;
+            text-align: center;
+        }
+
+        #part_1, #part_2, #part_3, #part_4{
+            padding-top: 10px;
+        }
+
+        .content {
+            margin-top: 0px;
+        }
+
+        .part_container {
+            box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+            padding-left: 20px;
+            border-radius: 10px;
+            border-width: 0.5px;
+            border-style: solid;
+            border-color: rgb(218, 220, 224);
+            background-color: white !important;
+            width: auto;
+            height: auto;
+            text-align: left;
+            margin-top: 90px;
+        }
+
+        h1.part_name {
+            padding-top: auto;
+            padding-bottom: 0;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .photo_content {
+            
+           
+           display: block;
+            width: 80%;
+            height: auto;
+            margin-left: auto;
+             margin-right: auto;
+        }
+        .form{
+            box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+            padding-left: 20px;
+            border-radius: 10px;
+            border-width: 0.5px;
+            border-style: solid;
+            border-color: rgb(218, 220, 224);
+            background-color: rgba(0, 0, 0, 0);
+            width: auto;
+            height: auto;
+            text-align: left;
+            margin-top: 10px;
+        }
+        .form_content{
+            margin-right: 20px;
+        }
+
+        /* RIGHT COLUMN */
+        .col_right {
+            padding-top: 0px;
+            float: right;
+            width: 50%;
+            height: calc(100%-200px);
+            overflow: hidden;
+            background-color: rgb(246, 246, 246);
+        }
+
+        /* Content in Right column */
+        .answer_sheet {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Footer */
+        footer {
+            font-family: 'Google Sans', sans-serif;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            background-image: linear-gradient(to top right, rgb(50, 0, 0), rgb(210, 0, 0));
+            color: white;
+            font-size: 14;
+            padding: 10 0 0 0;
+            height: 40px;
+            width: 100%;
+        }
+
+        .btn_container {
+            float: left;
+            width: 40%;
+            height: 40px;
+            background-color: rgba(0, 0, 0, 0);
+        }
+
+        .btn_wraper {
+            margin-left: 10px;
+            width: max-content;
+        }
+
+        .btn_part {
+            float: left;
+            width: fit-content;
+            background-color: white;
+            border-radius: 100px;
+            text-align: center;
+            padding: 3px 10px 3px 10px;
+            margin-left: 10px;
+
+        }
+
+        .timer {
+            margin: auto;
+            font-family: 'Google Sans', sans-serif;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0);
+            color: white;
+            text-align: center;
+            font-size: 24;
+            height: 40px;
+            width: 20%;
+        }
+
+        .name_skill {
+            padding-right: 20px;
+            float: right;
+            width: 40%;
+            height: 40px;
+            background-color: rgba(0, 0, 0, 0);
+            text-align: right;
+            font-size: 24px;
+        }
+         /* CHECK PASSWORD */
+        /* You only need to apply this to elements that should be hidden and
+   then simply remove this class from hidden elements to show them. */
+        .hidden { display: none; }
+
+        #button{
+            font-family: 'Google Sans', sans-serif;
+            font-size: 20px;
+            font-weight: normal;
+            background-color: white;
+            border-radius: 30px;
+            border-width: 0.1px;
+            border-style: solid;
+            width: 100px;
+            margin: auto;
+            border-color: white;
+            color: red;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .enter_key{
+            width: fit-content;
+            padding: 10 20 10 20;
+            background-color:white;
+            border-radius: 5px;
+            text-align: center;
+            border-style: none;
+        }
+        .table{
+            margin: auto;
+        }
+        table{
+            width: 100%;
+            border-style: solid;
+            border-radius: 5px;
+            border-width: 1.5px;
+            border-color: rgb(218, 220, 224);
+            padding: 0px;     
+            box-shadow: 0 2px 2px rgba(0, 0, 0, 0.09);   
+            word-break: break-word;
+            }
+        tr{
+            border-style: solid;
+            border-width: 5px;
+            border-radius: 5px;
+            padding: 5px;
+        }
+        tr:nth-child(even){background-color: #f2f2f2}
+        th{
+            width: fit-content;
+            border-style: solid;
+            border-width: 1px;
+            border-radius: 0px;
+            background-color: brown;
+            color: white;
+            padding: 5px;
+        }
+        td{
+            padding: 5px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- Header -->
+    <!-- <header>
+        
+            <img class="logo" src="logo.gif" alt="Flowers in Chania" width="50" height="50">
+            <a href="#default" class="company_name"></a> The Language Academy</a>
+
+         <div>
+             
+         </div>
+            <a class="active" href="#home">Home</a>
+            <a href="#contact">Contact</a>
+            <a href="#about">About</a>
+       
+    </header> -->
+
+    <!-- Body -->
+    <!--Time out bar  -->
+    <div id="timeout_bar" class="hide">
+        <div class="timeout_bar_container">
+            <h1 class="event_name">TIME OUT!</h1>
+            <!-- <div href="#" id="exit_btn">Exit</div> -->
+            <div id="return_btn">
+                <a href="Reading.html" style="color: red; text-align: center; margin: auto; padding: 3 20 0 20;" >Continue to Reading Test</a>
+            </div>
+        </div>
+    </div>
+    <!-- Start bar -->
+    <div id="start_bar">
+        <div class="start_bar_container">
+            <h1 class="event_name">FINAL TEST IELTS FOUNDATION</h1>
+            <h1 class="skill_name">Listening Academic Test</h1>
+            <h1 style="font-size: 28px;">40 Questions - 40 Minutes</h1>
+            <p style="font-size: 18px; font-weight: lighter; text-align: center;">The countdown timer will begin when you click on Start</p>
+            <input class="enter_key" type="password" id="password" placeholder="Enter a private key">
+            <br>
+            <input id="button" type="button" value="Start">
+        </div>
+    </div>
+
+    <section>
+
+        <article class="col_left">
+
+            <!-- Content in Left Colum -->
+            <article class="content">
+                <audio controls>
+                    <source src="Audio/Listening.mp3" type="audio/mp3">
+                  </audio>
+                <!-- Part 1 -->
+                <article class="part" id="part_1">
+                    <div class="part_container ">
+                        <h1 class="part_name">Section 1.  Questions 1 – 10 
+                        </h1>
+                        <br>
+                     
+                        
+                    </div>
+                    <div class="form">
+                        <div class="form_content">
+                            <i>
+                                <p style="padding-top: 0 !important;">Question 1 - 2: Complete the notes below  </p>
+                                <p>Write <b> NO MORE THAN THREE WORDS AND/OR A NUMBER  </b> for each answer </p>    
+                            </i>
+                           <div class="table">
+                            <table style="width:100%">
+                                <tr>
+                                    <th style="text-align: left;">
+                                    <i>Example</i></th>
+                                    <th style="text-align: left;">
+                                    <i>Answer
+                                    </i></th>
+                                </tr>
+                                <tr>
+                                    <td>Type of job required</td>
+                                    <td style="text-align:left">Part-time</td>
+                                </tr>
+                            </table>
+                           </div>
+                           <p>Students is studying <b>1</b>  _______________</p>
+                           <p>Student is in the <b>2</b> _______________ year of the course.</p>
+                        </div>
+                    </div>
+                    <div class="form">
+                        <div class="form_content">
+                            <i>
+                                <p style="padding-top: 0 !important;">Question 3 - 5: Complete the notes below  </p>
+                                <p>Write <b> NO MORE THAN TWO WORDS   </b> for each answer </p>    
+                            </i>
+                           <div class="table">
+                            <table style="width:100%">
+                                <tr>
+                                    <th style="text-align: center;">
+                                        Position Available</th>
+                                    <th style="text-align: center;">
+                                        Where
+                                 </th>
+                                 <th style="text-align: center;">
+                                    Problem
+                                  </th>
+                                </tr>
+                                <tr>
+                                    <td>Receptionist</td>
+                                    <td>in the <b>3</b> _______________</td>
+                                    <td>evening lectures</td>
+                                </tr>
+                                <tr>
+                                    <td><b>4</b> _______________</td>
+                                    <td>in the child care centre</td>
+                                    <td>too early</td>
+                                </tr>
+                                <tr>
+                                    <td>Clerical Assistant</td>
+                                    <td>in the <b>5</b> _______________</td>
+                                    <td>evening lectures</td>
+                                </tr>
+                            </table>
+                           </div>
+                           <br>
+                           
+                        </div>
+                    </div>
+
+                    <div class="form">
+                        <div class="form_content">
+                            <i>
+                                <p style="padding-top: 0 !important;">Question 6 - 10: Complete the notes below  </p>
+                                <p>Write <b> NO MORE THAN THREE WORDS AND/OR A NUMBER    </b> for each answer </p>    
+                            </i>
+                           <div class="table">
+                            <table style="width:100%">
+                                <tr >
+                                    <th colspan="2" style="text-align: center;">
+                                        STUDENT DETAILS</th>
+                                   
+                                 
+                                </tr>
+                                <tr>
+                                    <td><b>Name:</b> </td>
+                                    <td>Anita Newman</td>
+                                   
+                                </tr>
+                                <tr>
+                                    <td><b>Address:</b> </td>
+                                    <td><b>6</b> _______________
+                                        Room No. <b>7</b> _______________
+                                        </td>
+                                  
+                                </tr>
+                                <tr>
+                                    <td> <b>Other skills:</b> </td>
+                                    <td>Speaks some Japanese</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Position available:</b> </td>
+                                    <td><b>8</b> _______________at the English Language Centre</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Duties:</b> </td>
+                                    <td>Respond to enquiries and <b>9</b> _______________</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Time of interview:</b> </td>
+                                    <td>Friday at <b>10</b> _______________a.m.</td>
+                                </tr>
+
+                            </table>
+                           </div>
+                           <br>
+                           
+                        </div>
+                    </div>
+                    <!-- <div class="form">
+                        <div class="form_content">
+                            <h1 style="text-align: center;">Family Excursion                            </h1>
+                            <h1 class="part_name">Cruise on a lake </h1>
+                            <p><i>Example</i></p>
+                    
+                            <ul>
+                                <li>Travel on an old____steamship____  </li>
+                                <br> <li>Can take photos of the <b>1</b>_______________ that surround the lake                                 </li>
+                            </ul>
+
+                            <h1 class="part_name">Farm visit </h1>
+                            <ul>
+                                <li>Children can help feed the sheep </li>
+                                <br> <li>Visit can include a 40-minute ride on a <b>2</b>_______________
+                                </li>
+                                <br> <li>Visitors can walk in the farm’s <b>3</b>_______________by the lake 
+                                </li>
+                                <br><li><b>4</b>_______________ is available at extra cost 
+                                </li>
+                            </ul>
+                            <h1 class="part_name">Cycling trips</h1>
+                            <ul>
+                                <li>Cyclists explore the Back Road 
+                                </li>
+                                <br> <li>A <b>5</b>_______________ is provided 
+                                </li>
+                                <br><li>Only suitable for cyclists who have some <b>6</b>_______________
+                                </li>
+                                <p>- Bikes can be hired from <b>7</b>_______________ (near the Cruise Ship Terminal) </p>
+                                <li> Cyclists need: </li>
+                                <p>- a repair kit </p>
+                                <p>- food and drink </p>
+                                <p>- a <b>8</b>_______________ (can be hired) </p>
+                                <li>There are no <b>9</b>_______________ or accommodation in the area </li>
+                            </ul>
+                            <h1 class="part_name">Cost </h1>
+                            <ul>
+                                <li>Total cost for whole family of cruise and farm visit: <b>10 $</b>_______________
+
+                                </li>
+                            </ul>
+                        
+                        </div>
+                        
+                    </div> -->
+                   
+                    <!-- <h1>The Generational Power Balance</h1>
+                    <img class="photo_content"
+                        src="https://www.visualcapitalist.com/wp-content/uploads/2021/05/VC_OC_Which-Generation-Wields-the-Most-Power_Supplemental1_Economics-1.jpg"
+                        alt="">
+                    <p>Throughout history, the clash between the old and the young has been a defining feature of both
+                        reality and literature. Parents have power over their children… but as those juveniles approach
+                        adolescence, they begin to put pressure on their parents’ power. They test the rules; they
+                        rebel; they create their own rules. The parents are puzzled, frustrated and resentful about the
+                        shift in the balance of power. They fight back; try to exert their leadership in an attempt to
+                        maintain their power. But as they grow towards old age, they are forced to relinquish it, while
+                        the world changes into a place they cease to recognize from their youth.</p> -->
+                    
+                </article>
+                <!-- Part 2 -->
+                <article class="part" id="part_2">
+                    <div class="part_container ";>
+                        <h1 class="part_name">Section 2. Questions 11-20
+                        </h1>
+                    <br>
+                    </div>
+                    <div class="form">
+                        <div class="form_content">
+                        <p> <i>
+                            Questions 11-16. Choose the correct letter, <b> A, B</b>  or <b>C.</b> 
+                            </i>        
+                        </p>
+                        <h1 style="text-align: center;">SPONSORED WALKING HOLIDAY</h1>
+                        <br>
+                    </div>
+                    </div>
+
+                    <div class="form">
+                        <div class="form_content">
+                            <i>
+                                <p style="padding-top: 0 !important;">Question 17 - 20: Complete the notes below  </p>
+                                <p>Write <b> ONE WORD ONLY     </b> for each answer </p>    
+                            </i>
+
+                            <div class="table">
+                                <table style="width:100%">
+                                    <tr >
+                                        <th colspan="2" style="text-align: center;">
+                                            ITINERARY</th>
+                                       
+                                     
+                                    </tr>
+                                    <tr>
+                                        <td style="width:20%"><b>Day 1</b> </td>
+                                        <td>arrive in Kishba</td>
+                                       
+                                    </tr>
+                                    <tr>
+                                        <td><b>Day 2</b> </td>
+                                        <td>rest day
+                                            </td>
+                                      
+                                    </tr>
+                                    <tr>
+                                        <td> <b>Day 3</b> </td>
+                                        <td>spend all day in a <b>17</b> _______________</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Day 4</b> </td>
+                                        <td>visit a school</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Day 5</b> </td>
+                                        <td>rest day</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Day 6</b> </td>
+                                        <td>see a <b>18</b> _______________with old carvings</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Day 7</b> </td>
+                                        <td>rest day</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Day 8</b> </td>
+                                        <td>swim in a <b>19</b> _______________</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Day 9</b> </td>
+                                        <td>visit a <b>20</b> _______________</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Day 10</b> </td>
+                                        <td>depart from Kishba</td>
+                                    </tr>
+    
+                                </table>
+                                <br>
+                               </div>
+                        </div>
+
+                    </div>
+                </article>
+
+                <!-- Part 3 -->
+                <article class="part" id="part_3">
+                    <div class="part_container ";>
+                        <h1 class="part_name">Section 3. Questions 21-30
+                        </h1>
+                        <br>
+                    </div>
+                    <div class="form">
+                        <div class="form_content">
+                            <i>
+                                <p style="padding-top: 0 !important;">Question 21 - 22: Complete the notes below  </p>
+                                <p>Write <b> ONE WORD AND/OR A NUMBER   </b> for each answer </p>    
+                            </i>
+                            <h1 style="text-align: center;">OCEAN RESEARCH</h1>
+                            <p> <b>The Robotic Float Project</b> </p>
+                            <p>- Float is shaped like a <b>21</b> _______________</p>
+                            <p>- Scientists from <b>22</b> _______________ have worked on the project so far</p>
+                        </div>
+                    </div>
+
+                    <div class="form">
+                        <div class="form_content">
+                            <i>
+                                <p style="padding-top: 0 !important;">Question 23 - 25: Complete the notes below  </p>
+                                <p>Write <b> ONE WORD AND/OR A NUMBER    </b> for each answer </p>    
+                            </i>
+                            <h1 style="text-align: center;">THE OPERATIONAL CYCLE</h1>
+        
+                        </div>
+                        
+                            <img class="photo_content"  src="Photo/Listen part 3.png" alt="">
+                       <br>
+      
+
+                    </div>
+
+                    <div class="form">
+                        <div class="form_content">
+                            <i>
+                                <p style="padding-top: 0 !important;">Question 26 - 30:</p>
+                                <p>In what time period can data from the float projects help with the following things?</p>
+                                <p>Write the correct letter  <b> A, B</b> or  <b>C</b> next to questions 26 – 30.</p>    
+                            </i>
+                          
+                            <p> <b>A. </b>     At present</p>
+                            <p><b>B. </b> 	In the near future</p>
+                           <p><b>C. </b>In the long-term future</p>
+                        </div>
+                    </div>
+
+                   
+                </article>
+
+                 <!-- Part 4 -->
+                 <article class="part" id="part_4">
+                    <div class="part_container ">
+                        <h1 class="part_name">Section 4.  Questions 31 – 40 
+                        </h1>    
+                        <br>
+                    </div>
+                    <div class="form">
+                        <div class="form_content">
+                            <i>
+                                <p style="padding-top: 0 !important;">Question 31 - 34: Choose the correct letter <b>A, B</b>  or <b>C</b> . </p>
+                               
+                            </i>
+                            <h1 style="text-align: center;">Hotels and the tourist industry</h1>              
+                       <br>
+                       </div>
+                    
+                    </div>
+
+                    <div class="form">
+                        <div class="form_content">
+                            <i>
+                                <p style="padding-top: 0 !important;">Question 35 - 40: Complete the notes below.</p>
+                                <p>Write <b> ONE WORD ONLY</b> for each answer.</p>
+                            </i>
+                            <p> <b>A company providing luxury serviced apartments aims to:</b> </p>
+                            <p>- cater specifically for <b>35</b> _______________travellers</p>
+                            <p>- provide a stylish <b>36</b> _______________for guests to use</p>
+                            <p>- set a trend throughout the <b>37</b> _______________which becomes permanent </p>
+                            <p> <b>Traditional holiday hotels attract people by:</b> </p>
+                            <p>- offering the chance to <b>38</b> _______________their ordinary routine life</p>
+                            <p>- making sure that they are cared for in all respects – like a <b>39</b> _______________</p>
+                            <p>- leaving small treats in their rooms – e.g. cosmetics or <b>40</b> _______________</p>
+                        </div>
+                    </div>
+
+                </article>
+                 <!-- Part END -->
+                 <article class="part" id="">
+                    <div class="part_container ">    
+                    </div>
+                </article>
+            
+            </article>
+
+            </article>
+
+
+
+        </article>
+
+        <!-- Answer Sheet -->
+        <article class="col_right">
+            <iframe class="answer_sheet"
+                src="https://docs.google.com/forms/d/e/1FAIpQLSeZ_dVxMXSN-8kAH9SYHmg-4hIikZjRMyk0gVDPLmad6tcBXg/viewform?usp=sf_link"
+                max width="100%" height="100%" frameborder="0" marginheight="0" marginwidth="0">Đang tải…</iframe>
+
+        </article>
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+        <section class="btn_container">
+            <div class="btn_wraper">
+                <div class="btn_part">
+                    <a href="#part_1" style="color: darkred !important;">Section 1</a>
+                </div>
+                <div class="btn_part">
+                    <a href="#part_2" style="color: darkred !important;">Section 2</a>
+                </div>
+                <div class="btn_part">
+                    <a href="#part_3" style="color: darkred !important;">Section 3</a>
+                </div>
+                <div class="btn_part">
+                    <a href="#part_4" style="color: darkred !important;">Section 4</a>
+                </div>
+            </div>
+        </section>
+        <section class="name_skill">
+            Listening Academic Test
+        </section>
+        <section class="timer">
+            <i class="far fa-clock"></i>
+            <span id="timer">43:00</span>
+        </section>
+
+    </footer>
+
+
+    <!-- Script -->
+    <script src="https://kit.fontawesome.com/206784a216.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        // START BAR
+        $("#start_bar #start_btn").on('click', function () {
+            $(this).parents("#start_bar").fadeOut();
+
+               
+        });
+        $("#timeout_bar #exit_btn").on('click', function () {
+            $("#timeout_bar").removeClass("show").addClass("hide");
+        });
+
+         //    CHECK PASSWORD
+    // Get references to the elements you'll be working with
+    var input = document.getElementById("password");
+        var div = document.getElementById("HIDDENDIV");
+        var btn = document.getElementById("button");
+
+        // Set up event handlers in JavaScript
+        button.addEventListener("click", validate);
+
+        function validate(){
+        if (input.value == '33903458') { 
+            // No need to add a "show" class. Just remove the "hidden" class.
+            $(this).parents("#start_bar").fadeOut();
+             // TIMER
+             var presentTimeEl = document.getElementById('timer');
+                let timeArray = presentTimeEl.innerText.split(/[:]+/);
+                var min = timeArray[0];
+                var sec = timeArray[1];
+
+                function startTimer() {
+                    sec--;
+                    if (sec < 10 && sec >= 0) { sec = "0" + sec };
+                    if (sec < 0) { sec = 59 };
+                    if (sec == 59) {
+                        min--;
+                    }
+                    if (min.toString().length == 1) {
+                        min = '0' + min;
+                    }
+                    console.log(min.length)
+                    presentTimeEl.innerText = min + ":" + sec;
+                    if (min < 0) {
+                        clearInterval(countdown);
+                        console.log('end')
+                        presentTimeEl.innerText = "Time out!";
+                        document.getElementById("timeout_bar").className = "show";
+                    }
+
+                }
+                var countdown = setInterval(startTimer, 1000);
+            
+        } else {  
+            password.focus(); // <-- If you don't do this first, your select code won't work
+            password.setSelectionRange(0, password.value.length);   
+            alert('Invalid Password!'); 
+        }
+        }
+
+//         input.addEventListener("keydown", function(event){
+//         if (event.keyCode === 13){
+//         // No reason to simulate a button click. Just call the code that needs to be run.
+//         validate();
+//         }
+// })
+;
+    </script>
+
+</body>
+
+</html>

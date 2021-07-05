@@ -1,0 +1,684 @@
+<html>
+
+<head>
+    <title>Reading</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/206784a216.js" crossorigin="anonymous"></script>
+    <link
+        href="https://fonts.googleapis.com/css?family=Google+Sans:400,500|Roboto:300,400,400i,500,700&amp;subset=latin,vietnamese,latin-ext,cyrillic,greek,cyrillic-ext,greek-ext"
+        rel="stylesheet" type="text/css" nonce="">
+
+    <style>
+        
+        /* @media screen and (max-width: 1000px) {
+            body {
+                display: none;
+            }
+        } */
+        body {
+            font-family: 'Roboto', sans-serif;
+            overflow: hidden;
+            margin: 0;
+        }
+
+        h1 {
+            margin-top: 20px;
+            padding-top: 0px;
+            padding-bottom: 0;
+            margin-bottom: auto;
+            font-family: 'Google Sans', sans-serif;
+            font-size: 36px;
+            font-weight: normal;
+        }
+
+        p {
+            padding-top: 10px;
+            margin-bottom: 20px;
+            text-align: justify;
+            padding-bottom: 0px;
+        }
+
+        /* NOTY BAR */
+        #start_bar {
+           
+    
+            font-family: 'Google Sans', sans-serif;
+            position: absolute;
+            z-index: 100;
+            background-image: linear-gradient(to top right, rgb(50, 0, 0), rgb(210, 0, 0));
+            /* border-radius: 10px; */
+            padding: 0;
+            margin: auto;
+            position: absolute;
+            top: 0;
+            left: 0;
+            /* transform: translate(-50%, -50%); */
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            align-items: center;
+            font-size: 20px;
+            color: white;
+        }
+
+        .start_bar_container {
+            position: absolute;
+            padding-top: 50px;
+            margin: auto;
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            font-family: 'Google Sans', sans-serif;
+        }
+
+        .event_name {
+            padding: 20px;
+            font-size: 48px;
+            font-weight: bold;
+            padding-bottom: 60px;
+        }
+
+        .skill_name {
+            border-radius: 5px;
+            margin: auto;
+            width: fit-content;
+            background-color: white;
+            color: red;
+            font-size: 28px;
+            font-weight: bold;
+            padding: 10px 20px 10px 20px;
+        }
+
+        #start_btn {
+            font-family: 'Google Sans', sans-serif;
+            font-size: 20px;
+            font-weight: normal;
+            background-color: white;
+            border-radius: 30px;
+            border-width: 0.1px;
+            border-style: solid;
+            width: 100px;
+            margin: auto;
+            border-color: white;
+            color: red;
+            align-items: center;
+        }
+
+        .hide {
+            display: none;
+            ;
+        }
+
+        .show {
+            display: block;
+            font-family: 'Google Sans', sans-serif;
+            position: absolute;
+            z-index: 100;
+            background-image: linear-gradient(to top right, rgb(50, 0, 0), rgb(210, 0, 0));
+            /* border-radius: 10px; */
+            padding: 0;
+            margin: auto;
+            position: absolute;
+            top: 0;
+            left: 0;
+            /* transform: translate(-50%, -50%); */
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            align-items: center;
+            font-size: 20px;
+            color: white;
+        }
+
+        .timeout_bar_container {
+            position: absolute;
+            padding-top: 50px;
+            margin: auto;
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            font-family: 'Google Sans', sans-serif;
+        }
+
+        #exit_btn {
+            font-family: 'Google Sans', sans-serif;
+            font-size: 20px;
+            font-weight: normal;
+            background-color: white;
+            border-radius: 30px;
+            border-width: 0.1px;
+            border-style: solid;
+            width: 100px;
+            margin: auto;
+            border-color: white;
+            color: red;
+            align-items: center;
+        }
+        #return_btn {
+            font-family: 'Google Sans', sans-serif;
+            font-size: 20px;
+            font-weight: normal;
+            background-color: white;
+            border-radius: 30px;
+            border-width: 0.1px;
+            border-style: solid;
+            width:fit-content;
+            margin: auto;
+            border-color: white;
+            color: red;
+            align-items: center;
+            left: 50%;
+            height: 30px;
+            text-align: center;
+        }
+
+        /* Header */
+        header {
+            box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+            border-width: 0.5px;
+            border-style: solid;
+            border-color: rgb(218, 220, 224);
+            font-family: 'Google Sans', sans-serif;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: white;
+            color: black;
+            font-size: 24;
+            padding: 0 0 0 0;
+            height: 50px;
+            width: 100%;
+        }
+
+        a {
+            float: left;
+            color: black;
+            text-align: center;
+            text-decoration: none;
+            font-size: 18px;
+
+        }
+
+        .header_left {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-left: 20px;
+            width: 100%;
+            height: 50px;
+        }
+
+        .logo {
+            float: left;
+            width: 50px;
+        }
+
+        a.company_name {
+            padding-top: 50px;
+            padding-bottom: 20px;
+            width: fit-content;
+            font-size: px;
+            height: 50px;
+        }
+
+        .header_right {
+            float: right;
+            position: relative;
+            right: 0;
+            top: 0;
+            height: 50px;
+        }
+
+        /* BODY */
+        section {
+            height: calc(100%-200px);
+            background-color: rgb(246, 246, 246);
+            width: 100%;
+            margin-bottom: 40px;
+            padding-bottom: 50px;
+        }
+
+        /* LEFT COLUMN */
+        .col_left {
+            background-color: rgb(246, 246, 246);
+            float: left;
+            width: 50%;
+            height: 100%;
+            overflow-y: scroll;
+            scroll-behavior: smooth;
+        }
+
+        /* Content in Left column */
+        .part {
+            padding: 0 20px 0 20px;
+            text-align: center;
+            padding-bottom: 50px;
+        }
+
+        #part_1, #part_2, #part_3 {
+            padding-top: 10px;
+        }
+
+        .content {
+            margin-top: 0px;
+        }
+
+        .part_container {
+            box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+            padding-left: 20px;
+            border-radius: 10px;
+            border-width: 0.5px;
+            border-style: solid;
+            border-color: rgb(218, 220, 224);
+            background-color: white !important;
+            width: auto;
+            height: auto;
+            text-align: left;
+        }
+
+        h1.part_name {
+            padding-top: auto;
+            padding-bottom: 0;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .photo_content {
+            margin-top: 10px;
+            border-radius: 10px;
+            box-shadow: 0 2px 2px rgba(0, 0, 0, 0.09);
+            border-width: 0.5px;
+            border-style: solid;
+            object-fit: cover;
+            padding-left: 0;
+            border-width: 0.5px;
+            border-style: solid;
+            border-color: rgb(218, 220, 224);
+            width: 100%;
+            height: auto;
+
+        }
+
+        /* RIGHT COLUMN */
+        .col_right {
+            padding-top: 0px;
+            float: right;
+            width: 50%;
+            height: calc(100%-200px);
+            overflow: hidden;
+            background-color: rgb(246, 246, 246);
+        }
+
+        /* Content in Right column */
+        .answer_sheet {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Footer */
+        footer {
+            font-family: 'Google Sans', sans-serif;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            background-image: linear-gradient(to top right, rgb(50, 0, 0), rgb(210, 0, 0));
+            color: white;
+            font-size: 14;
+            padding: 10 0 0 0;
+            height: 40px;
+            width: 100%;
+        }
+
+        .btn_container {
+            float: left;
+            width: 40%;
+            height: 40px;
+            background-color: rgba(0, 0, 0, 0);
+        }
+
+        .btn_wraper {
+            margin-left: 10px;
+            width: max-content;
+        }
+
+        .btn_part {
+            float: left;
+            width: fit-content;
+            background-color: white;
+            border-radius: 100px;
+            text-align: center;
+            padding: 3px 10px 3px 10px;
+            margin-left: 10px;
+            color: red;
+
+        }
+
+        .timer {
+            margin: auto;
+            font-family: 'Google Sans', sans-serif;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0);
+            color: white;
+            text-align: center;
+            font-size: 24;
+            height: 40px;
+            width: 20%;
+        }
+
+        .name_skill {
+            padding-right: 20px;
+            float: right;
+            width: 40%;
+            height: 40px;
+            background-color: rgba(0, 0, 0, 0);
+            text-align: right;
+            font-size: 24px;
+        }
+         /* CHECK PASSWORD */
+        /* You only need to apply this to elements that should be hidden and
+   then simply remove this class from hidden elements to show them. */
+        .hidden { display: none; }
+
+        #button{
+            font-family: 'Google Sans', sans-serif;
+            font-size: 20px;
+            font-weight: normal;
+            background-color: white;
+            border-radius: 30px;
+            border-width: 0.1px;
+            border-style: solid;
+            width: 100px;
+            margin: auto;
+            border-color: white;
+            color: red;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .enter_key{
+            width: fit-content;
+            padding: 10 20 10 20;
+            background-color:white;
+            border-radius: 5px;
+            text-align: center;
+            border-style: none;
+        }
+        .form{
+            box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+            padding-left: 20px;
+            border-radius: 10px;
+            border-width: 0.5px;
+            border-style: solid;
+            border-color: rgb(218, 220, 224);
+            background-color: rgba(0, 0, 0, 0);
+            width: auto;
+            height: auto;
+            text-align: left;
+            margin-top: 10px;
+        }
+        .form_content{
+            margin-right: 20px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- Header -->
+    <!-- <header>
+        
+            <img class="logo" src="logo.gif" alt="Flowers in Chania" width="50" height="50">
+            <a href="#default" class="company_name"></a> The Language Academy</a>
+
+         <div>
+             
+         </div>
+            <a class="active" href="#home">Home</a>
+            <a href="#contact">Contact</a>
+            <a href="#about">About</a>
+       
+    </header> -->
+
+    <!-- Body -->
+    <!--Time out bar  -->
+    <div id="timeout_bar" class="hide">
+        <div class="timeout_bar_container">
+            <h1 class="event_name">TIME OUT!</h1>
+            <!-- <div href="#" id="exit_btn">Exit</div> -->
+            <div id="return_btn">
+                <a href="index.html" style="color: red; text-align: center; margin: auto; padding: 3 20 0 20;" >Return to Homepage</a>
+            </div>
+        </div>
+    </div>
+    <!-- Start bar -->
+    <div id="start_bar">
+        <div class="start_bar_container">
+            <h1 class="event_name">FINAL TEST IELTS FOUNDATION</h1>
+            <h1 class="skill_name">Reading Academic Test</h1>
+            <h1 style="font-size: 28px;">40 Questions - 60 Minutes</h1>
+           
+            <p style="font-size: 18px; font-weight: lighter; text-align: center;">The countdown timer will begin when
+                you click on Start</p>
+            <input class="enter_key" type="password" id="password" placeholder="Enter a private key">
+            <br>
+            <input id="button" type="button" value="Start">
+        </div>
+    </div>
+
+    <section>
+
+        <article class="col_left">
+
+            <!-- Content in Left Colum -->
+            <article class="content">
+
+                <!-- Part 1 -->
+                <article class="part" id="part_1">
+                    <div class="part_container ">
+                        <h1 class="part_name">READING PASSAGE 1 </h1>
+        
+                        <p style="padding-top: 0 !important; padding-right: 20px;" > <i> You should spend about 20 minutes on <b><i>Questions 1-13</i></b> , which are based on Reading Passage 1 below.
+                        </i></p>
+                    </div>
+                    <h1>DIRTY RIVER BUT CLEAN WATER</h1>
+                    
+                    
+                  
+                    <p>Floods can occur in rivers when the flow rate exceeds the capacity of the river channel, particularly at bends or meanders in the waterway. Floods often cause damage to homes and businesses if they are in the nature of flat plains of rivers. While riverine flood damage can be eliminated by moving away from rivers and other bodies of water, people have traditionally lived and worked by rivers because the land is usually flat and fertile and because rivers provide easy travel and access commerce and industry.</p>
+                    <p>Fire and flood are two of the humanity’s worst nightmares. People have, therefore, always sought to control them. Forest fires are snuffed out quickly. Does the flow of Rivers is regulated by weirs and dams. At least that is how it used to be. But foresters have learned that forests need fires to clear out the brush and even to get seeds to germinate. And a similar revelation is now dawning on hydrologist. Rivers - and ecosystems they support - need floods. That is why a man-made torrent has been searching down the Grand Canyon. By Thursday March 6th it was running at full throttle, which was expected to be sustained for 60 hours.
+                        </p>
+                    <p>Flash once raised through the canyon every year. Spring snow from as far away as Wyoming would melt and swell the Colorado river to a flow at averaged around 1,500 cubic metres (50,000 cubic feet) a second. Every eight years or so, that figure rose to almost 3,000 cubic metres. These floods infused the river with sediment, carved its beaches and built its sandbars.</p>
+                    <p>However, in the four decades since the building of the Glen Canyon dam, just upstream of the Grand Canyon, the only sediment that it has collected has come from tiny and damned tributaries. Even that has not been much use as those tributaries are not powerful enough to distribute the sediment in an ecologically valuable way.</p>
+                    <p>This lack of flooding has harmed local wildlife. The humpback chub, for example, thrived in the rust-red waters of the Colorado. Recently, though, its population has crashed. At first sight, it looked as if the reason was that the chub were being eaten by trout introduced for sport fishing in the mid 20th century. But trout and chub coexisted until the Glen Canyon dam was built so something else is going on. Steve Gloss, of the United States Geological Survey (USGS), reckons that the chub’s decline is the result of their losing the most valuable natural defense, the Colorado’s Rusty sediment. The chub were well adapted to the poor visibility created by the thick, red water which gave the river its name, and depended on it to hide from predators. Without the cloudy water the chub became vulnerable. </p>
+                    <p>And the chub are not alone. In the years since the Glen Canyon Dam was built, several species have vanished altogether. These include a Colorado pike-minnows, the Razorback sucker and the roundtail chub. Meanwhile, aliens including fathead minnows, channel catfish and common carp, which would have been hard, put to survive in the savage waters of the undammed canyon, have moved in. </p>
+                    <p>So flooding is the obvious answer. Unfortunately, it is easier said than done. Floods were sent down the Grand Canyon in 1996 and 2004 and the results were mixed. In 1996 the flood was allowed to go on too long. To start with, all seemed well. The floodwaters built up sandbanks an infused the river with sediment. Eventually, however, the continued flow washed most of the sediment out of the canyon. This problem was avoided into 2004, but unfortunately, on that occasion, the volume of sand available behind the dam was too low to rebuild the sandbanks. This time, the USGS is convinced that things will be better. The amount of sediment available is three times greater than it was in 2004. So if a flood is going to do some good, this is the time to unleash one.</p>
+                    <p>Even so, it may turn out to be an empty gesture. It’s less than 1200 m³ a second, this flood is smaller than even an average spring flood, let alone one of the mightier deluges of the past. Those glorious inundations moved massive quantities of sediment through the Grand Canyon, wiping the slate dirty, and making a muddy mess of silt and muck that would make modern river rafters cringe.</p>
+                
+                
+                </article>
+
+                <!-- Part 2 -->
+                <article class="part" id="part_2">
+                    <div class="part_container">
+                        <h1 class="part_name">READING PASSAGE 2 (multiple choice, gap filling, yes no)</h1>
+                        <p style="padding-top: 0 !important; padding-right: 20px;"> <i> You should spend about 20 minutes on <b><i>Questions 14-26</i></b> , which are based on Reading
+                            Passage 2 below</i>
+                            </p>
+                    </div>
+
+                    <h1>Left-handed or Right-handed
+                    </h1>
+                   
+                    <p> <b>Section A</b> </p>
+                    <p>The probability that two right-handed people would have a left-handed child is only about 9.5%. The chance rises to 19.5% if one parent is lefty and 26% if both parents are left-handed. The preference, however, could also stay in from an infant’s imitation of his parents. To test genetic influence, starting in the 1970s British biologist Marian Annett at the University of Leicester hypothesized that no single gene determines handedness. Rather, during detal development, a certain molecular factor helps to strengthen the brain’s left hemisphere, which increases the probability that the right hand will be dominant, because the left side of the brain controls the right side of the body, and vice versa. Among the minority of people who lack this factor, handedness develops entirely by chance.</p>
+                    <p>Research conducted on twins complicates theory, however. One in five sets of identical twins involves one right-handed and one left-handed person, despite the fact that their genetic material is the same. Genes, therefore, are not solely responsible for handedness.</p>
+                
+                    <p><b>Section B</b></p>
+                    <p>Genetic theory is also undermined by the results from Peter Hepper and his team at Queen’s University in Belfast, Ireland, In 2004 the psychologists used ultrasound to show that by the 15th week of pregnancy fetuses already have a preference as to which thumb they suck. In most cases, the preference continued after birth. At 15 weeks, though, the brain does not yet have control over the body’s limbs. Hepper speculates that fetuses tend to prefer whichever side of the body is developing quicker and that their movements, in turn, influence the brain’s development. Whether this early preference is temporary or holds up throughout development and infancy is unknown. Genetic predetermination is also contradicted by the widespread observation that children do not settle on either the right or left hand until they are two or three years old.   </p>
+
+                    <p><b>Section C</b></p>
+                    <p>But even if these correlations were true, they did not explain what actually causes left-handedness. Furthermore, specialization on either side of the body is common among animals. Cats will favor one paw over another when fishing toys out from under the couch. Horses stomp more frequently with one hoof than the other. Certain crabs motion predominantly with the left or right claw. In evolutionary terms, focusing power and dexterity in one limb is more efficient than having to train two, four or even eight limbs equally. Yet for most animals, the preference for one side or the other is seemingly random. The overwhelming dominance of the right hand is associated only with humans. That fact directs attention toward the brain’s two hemispheres and perhaps toward language.</p>
+
+                    <p><b>Section D</b></p>
+                    <p>Interest in hemispheres dates back to at least 1836. That year, it’s all medical conference, French physician Marc Dax reported on an unusual commonality among his patients. During his many years as a country doctor, Dax had encountered more than 40 men and women for whom speech was difficult, the result of some kind of brain damage. What was unique was that every individual suffered damage to the left side of the brain. At the conference Dax elaborated on his theory, stating that each half of the brain was responsible for certain functions and that the left hemisphere controls speech. Other experts showed little interest in the Frenchman’s ideas.</p>
+                    <p>Overtime, however, scientists found more and more evidence of people experiencing speech difficulties following injury to the left brain. Patients with damage to the right hemisphere most often displayed disruptions in perception or concentration. Major advancements in understanding the brains asymmetry were made in the 1960s as a result of so-called split-brain surgery, developed to help patients with epilepsy. During this operation, doctors severed at the corpus callosum - the nerve bundle that connects the two hemispheres. The surgical cut also stopped almost all normal communication between the two hemispheres, which offered researchers the opportunity to investigate each side’s activity.</p>
+
+                    <p><b>Section E</b></p>
+                    <p>In 1949 neurosurgeon Juhn Wada devised the first test to provide access to the brain functional organization of language. By injecting an anesthetist into the right or left carotid artery, Wada temporary Lee paralyzed one side of a healthy brain, enabling him to more closely study the other side’s capabilities. Based on this approach, Brenda Milner and the late Theodore Rasmussen of the Montreal Neurological Institute published a major study in 1975 that confirmed the theory that country doctor Dax formulated you later nearly 140 years earlier: in 96 percent of right-handed people, language is processed much more intensely in the left hemisphere. The correlation is not as clear in lefties, however. For two thirds of them, the left hemisphere is still the most active language processor. But for the remaining third, either the right side is dominant on both sides work equally, controlling different language functions.</p>
+                    <p>That last statistic has slowed acceptance of the notion that the predominance of right-handedness is driven by left hemisphere dominant language processing. It is not at all clear why language control should somehow have dragged the control of body movement that. Some experts think one reason the left hemisphere reigns over language is because the organs of speech processing – the larynx and tongue-are positioned on the body’s symmetry axis. Because the structures were centered, it may have been unclear, in evolution airy times, which side of the brain should control them, and it seems unlikely that shared operation would result in a smooth motor activity.</p>
+                    <p>Language and handedness could’ve developed preferentially for every different reason as well. For example, some researchers, including evolutionary psychologist Michael C. Corballiss of the University of Auckland in New Zealand, think that the origin of human speech lies in gestures. Gestures predated words and helped language emerge. If the left hemisphere began to dominate speech, it would have dominated gestures, too, and because the left brain controls the right side of the body, the right hand developed more strongly.</p>
+
+                    <p><b>Section F</b></p>
+                    <p>Perhaps we will know more soon. In the meantime, we can revel in what, if any, differences handedness brings to our human talents. Popular wisdom says right-handed, left brained people excel at logical and analytical thinking. Left-handed, right brained individuals are thought to possess more creative skills and may be better at combining the functional features emergent in both sides of the brain. Yet some neuroscientists see such claims as pure speculation. Fewer scientists are ready to claim that left-handedness means greater creative potential. Yet lefties are prevalent among artists, composers and generally acknowledged great political thinkers. Possibly if these individuals are among the lefties whose language abilities are evenly distributed between hemispheres, the intense interplay required could lead to unusual mental capabilities.</p>
+
+                    <p><b>Section G</b></p>
+                    <p>Or perhaps some lefties become highly creative simply because they must be more clever to get by in our right-handed world. This battle, which begins during the very early stages of childhood, may lay the groundwork for exceptional achievements.</p>
+
+                   
+
+                </article>
+
+                <!-- Part 3 -->
+                <article class="part" id="part_3">
+                    <div class="part_container">
+                        <h1 class="part_name">READING PASSAGE 3
+                        </h1>
+                        <p style="padding-top: 0 !important; padding-right: 20px;"> <i> You should spend about 20 minutes on <b><i>Questions 27-40</i></b> , which are based on Reading
+                            Passage 3 below</i>
+                            </p>
+                    </div>
+                    <h1>GLOBAL WARMING IN NEW ZEALAND
+                    </h1>
+                   <p>For many environmentalists, the world seems to be getting warmer. As the nearest country of South Polar Region, New Zealand has maintained an upward trend in its average temperature in the past few years. However, the temperature in New Zealand will go up 4°C in the next century while the polar region will go up more than 6°C. The different pictures of temperature stem from the surrounding ocean which acts like the air conditioner. Thus, New Zealand is comparatively fortunate.</p>
+                   <p>Scientifically speaking, does temperature phenomenon in New Zealand originated from what researchers call SAM (Southern Annular Mode), which refers to the wind belt that circles the Southern Oceans including New Zealand and Antarctica. Yet recent work has revealed that changes in SAM in New Zealand have resulted in a weakening of moisture during the summer, and more rainfall in other seasons. A bigger problem may turn out to be heavier droughts for agricultural activities because of more water loss from soil, resulting in poor harvest before winter when the rainfall arrives too late to rescue.</p>
+                   <p>Among all the calamities posed by drought, moisture deficit ranks the first. Moisture deficit is the gap between the water plants need during the growing season and the water the Earth can offer. Measures of moisture deficit were at the highest since the 1970s in New Zealand. Meanwhile, ecological analyses clearly show moisture deficit is imposed at different growth stage of crops. If moisture deficit occurs around a crucial growth stage, it will cost about 22% reduction in grain yield as opposed to moisture deficit at vegetative phase.</p>
+                   <p>Global warming is not only affecting agriculture production. When scientists say the country’s snow pack and glaciers are melting at an alarming rate due to global warming, the climate is putting another strain on the local places. For example, when the development of global warming is accompanied by the falling snow line, the local skiing industry comes into a crisis. There snow line may move up as the temperature goes up, and then the snow at the bottom will melt earlier. Fortunately, it is going to be favorable for the local skiing industry to tide over tough periods since the quantities of snowfall in some areas are more likely to increase.</p>
+                   <p>What is the reaction of glacier region? The climate change can be reflected in the glacier or region in southern New Zealand or land covered by ice and snow. The reaction of a glacier to a climatic change involves a complex change of processes. Over time periods of years to several decades, cumulative changes in mass balance cause problem and thickness changes, which will affect the flow of ice via altered internal deformation in basal sliding. This dynamic reaction finally leads to glacier length changes, the advance or retreat of glacier tongues. Undoubtedly, glacier mass balance is a more direct signal of annual atmospheric conditions.</p>
+                   <p>The latest research results of National Institute of Water and Atmospheric (NIWA) research shows that glacier line keeps moving up because of the impact of global warming. For the losses of ice can be reflected in Mt. Cook Region. By 1996, a 14 km long sector of the glacier had melted down forming a melt lake (Hooker Lake) with a volume. Melting of the glacier front at a rate of 14 m/year will cause the glacier to retreat at a rather uniform rate. Therefore, the lake will continue to grow until it reaches the glacier bed.</p>
+                   <p>A direct result of the melting glaciers Is the change of high tides that serves the main factor for sea level rise. The trend of sea level rise will bring a threat to the groundwater system for its hyper-saline groundwater and then pose a possibility to decrease the agricultural production. Many experts believe that the best way to counter this trend is to give a longer-term view of sea level change in New Zealand. Indeed, the coastal boundaries need to be upgraded and redefined.                </p>
+                   <p>There is no doubt that the global warming has affected New Zealand in many aspects. The emphasis on the global warming should be based on the joint efforts of local people and experts who conquer the tough period. For instance, farmers are taking a long term, multi-generational approach to adjust the breeds in species according to the temperature. Agriculturist also find ways to tackle the problem that may bring to the soil. In broad terms, going forward, the systemic resilience it’s been going on a long time in the ecosystem will continue.                </p>
+                   <p>How about animals’ reaction? Experts have surprisingly realized that animals have unconventional adaptation to global warming. A study has looked at sea turtles and a few northern beaches in New Zealand and it is very interesting to find that sea turtles can become a male or female according to the temperature. Further researches will try to find out how rising temperatures would affect the ratio of sex reversal in their growth. Clearly, the temperature of the nest plays a vital role in the sexes of the baby turtles. </p>
+                   <p>Tackling the problems of global warming is never easy in New Zealand, because records show the slow process of club warming may have a different impact on various regions. For New Zealand, the emission of carbon dioxide only accounts for 0.5% of the world’s total, which has met the governmental standard. However, New Zealand’s effort counts only a tip of the iceberg. So far, global warming has been a world issue that still hangs in an ambiguous future.</p>
+                </article>     
+            </article>
+
+
+
+        </article>
+
+        <!-- Answer Sheet -->
+        <article class="col_right">
+            <iframe class="answer_sheet"
+                src="https://docs.google.com/forms/d/e/1FAIpQLScErmsnMSikMf0poYVM1saAb0Zc2GHBJfKMPot1h_RU32mkSg/viewform"
+                max width="100%" height="100%" frameborder="0" marginheight="0" marginwidth="0">Đang tải…</iframe>
+
+        </article>
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+        <section class="btn_container">
+            <div class="btn_wraper">
+                <div class="btn_part">
+                    <a href="#part_1" style="color:darkred !important;">Passage 1</a>
+                </div>
+                <div class="btn_part">
+                    <a href="#part_2" style="color: darkred !important;">Passage 2</a>
+                </div> 
+                <div class="btn_part">
+                    <a href="#part_3" style="color: darkred !important;">Passage 3</a>
+                </div>
+            </div>
+        </section>
+        <section class="name_skill">
+            Reading Academic Test
+        </section>
+        <section class="timer">
+            <i class="far fa-clock"></i>
+            <span id="timer">63:00</span>
+        </section>
+
+    </footer>
+
+
+    <!-- Script -->
+    <script src="https://kit.fontawesome.com/206784a216.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        // START BAR
+        $("#start_bar #start_btn").on('click', function () {
+            $(this).parents("#start_bar").fadeOut();
+
+                
+        });
+        $("#timeout_bar #exit_btn").on('click', function () {
+            $("#timeout_bar").removeClass("show").addClass("hide");
+        });
+
+        //    CHECK PASSWORD
+    // Get references to the elements you'll be working with
+    var input = document.getElementById("password");
+        var div = document.getElementById("HIDDENDIV");
+        var btn = document.getElementById("button");
+
+        // Set up event handlers in JavaScript
+        button.addEventListener("click", validate);
+
+        function validate(){
+        if (input.value == '58408088') { 
+            // No need to add a "show" class. Just remove the "hidden" class.
+            $(this).parents("#start_bar").fadeOut();
+            // TIMER
+            var presentTimeEl = document.getElementById('timer');
+                let timeArray = presentTimeEl.innerText.split(/[:]+/);
+                var min = timeArray[0];
+                var sec = timeArray[1];
+
+                function startTimer() {
+                    sec--;
+                    if (sec < 10 && sec >= 0) { sec = "0" + sec };
+                    if (sec < 0) { sec = 59 };
+                    if (sec == 59) {
+                        min--;
+                    }
+                    if (min.toString().length == 1) {
+                        min = '0' + min;
+                    }
+                    console.log(min.length)
+                    presentTimeEl.innerText = min + ":" + sec;
+                    if (min < 0) {
+                        clearInterval(countdown);
+                        console.log('end')
+                        presentTimeEl.innerText = "Time out!";
+                        document.getElementById("timeout_bar").className = "show";
+                    }
+
+                }
+                var countdown = setInterval(startTimer, 1000);
+            
+        } else {  
+            password.focus(); // <-- If you don't do this first, your select code won't work
+            password.setSelectionRange(0, password.value.length);   
+            alert('Invalid Password!'); 
+        }
+        }
+
+//         input.addEventListener("keydown", function(event){
+//         if (event.keyCode === 13){
+//         // No reason to simulate a button click. Just call the code that needs to be run.
+//         validate();
+//         }
+// })
+;
+       
+    </script>
+
+</body>
+
+</html>
